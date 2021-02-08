@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Online Quiz">
+    <meta name="keywords" content="quiz">
+    <meta name="author" content="Annika, Erik, Lauri">
+    <title>Online Viktoriin | Loo kasutaja</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight">Online</span> Viktoriin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">esileht</a></li>
+                <li class="current"><a href="lookasutaja.html">loo kasutaja</a></li>
+                <li><a href="m2ngima.html">mängima</a></li>
+                <li><a href="admin.html">admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section id="main">
+    <div class="container">
+        <article id="main-col">
+            <h1 class="page-title">Kasutja loomine</h1>
+            <ul id="services">
+                <li>
+                    <h3>Kasutaja loomiseks sisesta ees ja perekonnanimi.</h3>
+                    <p>Mängu lõpus saad teada tulemuse.</p>
+                </li>
+            </ul>
+        </article>
+
+        <aside id="sidebar">
+            <div class="dark">
+                <h3>Enter Personal Data</h3>
+                <form class="quote">
+                    <div>
+                        <label>First Name</label><br>
+                        <input id="firstName" type="text" placeholder="First Name">
+                    </div>
+                    <div>
+                        <label>Last Name</label><br>
+                        <input id="lastName" type="text" placeholder="Last Name">
+                    </div>
+                    <div>
+                        <label>Address</label><br>
+                        <input id="address" type="text" placeholder="Address">
+                    </div>
+                    <br>
+                    <button id="enter_customer" class="button_1" type="button">Enter</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+
+
+<script>
+
+    let postUrl = '/banker/withdrawMoney'
+
+
+    function withdrawMoney() {
+        let withdraw = {
+            account: document.getElementById("account_withdraw").value,
+            amount: document.getElementById("amount_withdraw").value,
+        }
+        fetch(postUrl,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(withdraw)
+            })
+        /*.then(result => result.text())
+        .then(function (result) {
+        });*/
+    }
+
+    let element = document.getElementById("enter_withdraw");
+    element.addEventListener("click", withdrawMoney)
+
+
+</script>
+<footer>
+    Vali-IT Quiz Team &copy; 2021
+</footer>
+</body>
+</html>

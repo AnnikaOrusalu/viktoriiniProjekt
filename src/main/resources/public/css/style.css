@@ -1,0 +1,223 @@
+html {
+    height: 100%;
+}
+
+body {
+    font: 15px/1.5 "Tahoma", Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    /*background-color: #f4f4f4;*/
+    /*background: url('../img/taust.jfif') no-repeat 0 -400px;*/
+    background: url('../img/taust.jfif') 0 -50px;
+
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Global styles start with a dot. */
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.container p{
+    color: white;
+}
+.container h1{
+    color: white;
+}
+.container h3{
+    color: white;
+}
+.container h4{
+    color: white;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.button_1 {
+    height: 38px;
+    background: #1580c8;
+    border: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #ffffff;
+}
+
+.dark {
+    padding: 15px;
+    background: #35424a;
+    color: #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Header **/
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #d66473 4px solid;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header .highlight, header .current a {
+    color: #d6394b;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #3997d6;
+    font-weight: bold;
+}
+
+/* Showcase is a section name */
+#showcase {
+
+    /*min-height: 400px;*/
+    min-height: 100%;
+    /* the two dots .. go out from the css folder and then img goes into the img*/
+    /*0 is on the x axis, -400px is on the y axis, - goes up, + goes down, px is pixels*/
+    object-fit: fill;
+    /*background: url('../img/taust.jfif') no-repeat 0 -400px;*/
+    text-align: center;
+    color: #ffffff;
+}
+
+
+/*This affects all the h1 tags in the showcase section*/
+#showcase h1 {
+    margin-top: 100px;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+/*This affects all the paragraphs in the showcase section*/
+#showcase p {
+    font-size: 20px;
+}
+
+
+
+/* This selects the boxes section */
+#boxes {
+    margin-top: 180px;
+}
+
+/*This selects the div class box from the section called boxes.
+Since they are all the same class multiple box div can be edited
+with the same code.*/
+#boxes .box {
+    float: left;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+
+}
+
+/*This code selects the pictures in the box div*/
+#boxes .box img {
+    width: 90px;
+
+}
+
+/* Sidebar */
+aside#sidebar {
+    float: right;
+    width: 30%;
+    margin-top: 10px;
+}
+
+aside#sidebar .quote input, aside#sidebar .quote textarea {
+    width: 90%;
+    padding: 5px;
+}
+
+/* Main-col */
+article#main-col {
+    float: left;
+    width: 65%;
+}
+
+/* Services */
+ul#services li {
+    list-style: none;
+    padding: 20px;
+    /*border: #cccccc solid 1px;*/
+    margin-bottom: 5px;
+    /*background: #e6e6e6;*/
+}
+
+footer {
+    padding: 20px;
+    color: #ffffff;
+    background-color: #d6394b;
+    text-align: center;
+    margin-top: auto;
+
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    header #branding,
+    header nav,
+    header nav li,
+    #newsletter h1,
+    #newsletter form,
+    #boxes .box,
+    article#main-col,
+    aside#sidebar {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    header {
+        padding-bottom: 20px;
+    }
+
+    #showcase h1 {
+        margin-top: 40px;
+    }
+
+    #newsletter button, .quote button {
+        display: block;
+        width: 100%;
+    }
+
+    #newsletter form input[type="email"], .quote input, .quote textarea {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

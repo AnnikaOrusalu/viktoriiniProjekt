@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Online Quiz">
+    <meta name="keywords" content="quiz">
+    <meta name="author" content="Annika, Erik, Lauri">
+    <title>Online Viktoriin | Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight">Online</span> Viktoriin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">esileht</a></li>
+                <li><a href="lookasutaja.html">loo kasutaja</a></li>
+                <li><a href="m2ngima.html">mängima</a></li>
+                <li class="current"><a href="admin.html">admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section id="main">
+    <div class="container">
+        <article id="main-col">
+            <h1 class="page-title">Admin vaade</h1>
+            <ul id="services">
+                <li>
+                    <h3>Siin saad tabelis andmeid muuta.</h3>
+                    <p>Copy-paste jne</p>
+                </li>
+            </ul>
+        </article>
+
+        <aside id="sidebar">
+            <div class="dark">
+                <h3>Lisa küsimus</h3>
+                <form class="quote">
+                    <div>
+                        <label>Küsimus</label><br>
+                        <input id="question_insert" type="text" placeholder="Küsimus">
+                    </div>
+                    <br>
+                    <button id="enter_question" class="button_1" type="button">Enter</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<script>
+
+    let postUrl = '/viktor/addQuestion'
+
+
+    function addQuestion() {
+        let question = {
+            questionText: document.getElementById("question_insert").value,
+        }
+        fetch(postUrl,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(question)
+            })
+        /*.then(result => result.text())
+        .then(function (result) {
+        });*/
+    }
+
+    let element = document.getElementById("enter_question");
+    element.addEventListener("click", addQuestion)
+
+
+</script>
+
+<footer>
+    Vali-IT Quiz Team &copy; 2021
+</footer>
+</body>
+</html>

@@ -6,19 +6,19 @@
 
 
     <changeSet id="08-02-21 tabelid" author="Lauri">
-<!--
-        QUESTIONS TABEL
--->
+        <!--
+                QUESTIONS TABEL
+        -->
         <createTable tableName="questions">
             <column name="questions_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="text" type="text"/>
+            <column name="question_text" type="text"/>
         </createTable>
 
-<!--
-        ANSWERS TABEL
--->
+        <!--
+                ANSWERS TABEL
+        -->
         <createTable tableName="answers">
             <column name="answers_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
@@ -32,9 +32,9 @@
             </column>
         </createTable>
 
-<!--
-        RESULTS TABEL
--->
+        <!--
+                RESULTS TABEL
+        -->
         <createTable tableName="results">
             <column name="results_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
