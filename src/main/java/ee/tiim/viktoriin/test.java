@@ -7,5 +7,4 @@ public class test {
     int t = 56;
     int v = 56;
     int i = 56;
-    int p = 56;
 }
