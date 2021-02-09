@@ -24,8 +24,8 @@ public class ViktorController {
         return randomString;
     }
 
-//    @Autowired
-//    private ViktorService viktorService;
+    @Autowired
+    private ViktorService viktorService;
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
