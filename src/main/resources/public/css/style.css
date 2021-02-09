@@ -50,7 +50,7 @@ ul {
 }
 
 .dark {
-    padding: 15px;
+    padding: 30px;
     background: #35424a;
     color: #ffffff;
     margin-top: 10px;
@@ -155,7 +155,7 @@ with the same code.*/
 /* Sidebar */
 aside#sidebar {
     float: right;
-    width: 30%;
+    width: 50%;
     margin-top: 10px;
 }
 

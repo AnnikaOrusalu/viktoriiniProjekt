@@ -37,6 +37,16 @@ public class ViktorController {
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("question_text", linker.getQuestionText());
         jdbcTemplate.update(sql, paramMap);
-
     }
+
+
+   /* @PostMapping("addQuestionAndAnswers")
+    public void addQuestionAndAnswers(@RequestBody JsonThingy linker) {
+        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
+        String sql2 = "INSERT INTO answers (question_text) VALUES (:question_text)";
+        Map<String, Object> paramMap1 = new HashMap();
+        paramMap.put("question_text", linker.getQuestionText());
+        jdbcTemplate.update(sql, paramMap);
+    }*/
+
 }
