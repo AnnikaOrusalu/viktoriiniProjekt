@@ -4,4 +4,5 @@ public class test {
     int b = 12;
     int a = 0;
     int c = 6;
+    int t = 56;
 }
