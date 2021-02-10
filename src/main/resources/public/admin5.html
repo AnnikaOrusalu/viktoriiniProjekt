@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Online Quiz">
+    <meta name="keywords" content="quiz">
+    <meta name="author" content="Annika, Erik, Lauri">
+    <title>Online Viktoriin | Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight">Online</span> Viktoriin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">esileht</a></li>
+                <li><a href="lookasutaja.html">loo kasutaja</a></li>
+                <li><a href="m2ngima.html">mängima</a></li>
+                <li class="current"><a href="admin.html">admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section id="main">
+    <div class="container">
+        <article id="main-col">
+            <h1 class="page-title">Admin vaade</h1>
+            <ul id="services">
+                <li>
+                    <h3>Siin saad tabelis andmeid muuta.</h3>
+                    <p>Copy-paste jne</p>
+                </li>
+            </ul>
+        </article>
+
+        <aside id="sidebar">
+            <div class="dark">
+                <h3>Lisa küsimus ja märgi õige vastus täpiga!</h3>
+                <form class="quote">
+                    <div>
+                        <label>Küsimus</label><br>
+                        <input id="question_insert" type="text" placeholder="Küsimus">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="radio" id="true1" name="checker" value=1>
+                        <label for="true1"></label><br>
+                    </div>
+                    <div>
+                        <label>Vastus 1</label><br>
+                        <input id="answer1_insert" type="text" placeholder="Vastus 1">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="radio" id="true2" name="checker" value=1>
+                        <label for="true2"></label><br>
+                    </div>
+                    <div>
+                        <label>Vastus 2</label><br>
+                        <input id="answer2_insert" type="text" placeholder="Vastus 2">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="radio" id="true3" name="checker" value=1>
+                        <label for="true3"></label><br>
+                    </div>
+                    <div>
+                        <label>Vastus 3</label><br>
+                        <input id="answer3_insert" type="text" placeholder="Vastus 3">
+                    </div>
+                    <br>
+                    <div class="radio_1">
+                        <input type="radio" id="true4" name="checker" value=1>
+                        <label for="true4"></label><br>
+                    </div>
+                    <div>
+                        <label>Vastus 4</label><br>
+                        <input id="answer4_insert" type="text" placeholder="Vastus 4">
+                    </div>
+                    <br>
+                    <!--<button id="enter_question_with_answers" class="button_1" type="button">Enter</button>-->
+                    <button class="button_1" type="button" onclick="startTheAdding()">Enter</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<script>
+
+    let postUrl = '/viktor/addQuestionAndAnswers'
+
+    function startTheAdding() {
+
+        var ele = document.getElementsByName('checker');
+        var i;
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                addQuestionAndAnswers(i + 1);
+            } else {
+                alert("Vali õige vastus!");
+            }
+        }
+    }
+
+    function addQuestionAndAnswers(selected) {
+        let questionAndAnswers = {
+            questionText: document.getElementById("question_insert").value,
+
+            answer1: document.getElementById("answer1_insert").value,
+            answer1value: false,
+            answer2: document.getElementById("answer2_insert").value,
+            answer2value: false,
+            answer3: document.getElementById("answer3_insert").value,
+            answer3value: false,
+            answer4: document.getElementById("answer4_insert").value,
+            answer4value: false,
+        }
+        if (selected == 1) {
+            questionAndAnswers.answer1value = true
+        } else if (selected == 2) {
+            questionAndAnswers.answer2value = true
+        } else if (selected == 3) {
+            questionAndAnswers.answer3value = true
+        } else if (selected == 4) {
+            questionAndAnswers.answer4value = true
+        }
+
+        fetch(postUrl,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(questionAndAnswers)
+            })
+    }
+
+
+</script>
+
+<footer>
+    Vali-IT Quiz Team &copy; 2021
+</footer>
+</body>
+</html>
