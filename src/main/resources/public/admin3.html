@@ -26,12 +26,12 @@
     </div>
 </header>
 
-<!--// radio buttonile samad nimed
+// radio buttonile samad nimed
 // kutsud välja dokument.getElements by name vastavalt nimele
 // itereerid üle listi mida said kätte puntk kahes
 // iteratsiooni sees kontrollid milline neist elemendidest on check
-// if element. checked then tee midaiganes sa tahad teha-->
-
+// if element. checked then tee midaiganes sa tahad teha
+// https://www.geeksforgeeks.org/how-to-get-value-of-selected-radio-button-using-javascript/
 
 <section id="main">
     <div class="container">
@@ -55,43 +55,45 @@
                     </div>
                     <br>
                     <div>
-                        <input type="radio" id="true1" name="checker" value=1>
-                        <label for="true1"></label><br>
-                        <!--                    </div>-->
-                        <!--                    <div>-->
                         <label>Vastus 1</label><br>
                         <input id="answer1_insert" type="text" placeholder="Vastus 1">
                     </div>
-                    <br>
                     <div>
-                        <input type="radio" id="true2" name="checker" value=1>
-                        <label for="true2"></label><br>
-                        <!--                    </div>-->
-                        <!--                    <div>-->
+                        <input type="radio" id="true1" name="boolean" value=1>
+                        <label for="true1"></label><br>
+                    </div>
+
+                    <div>
                         <label>Vastus 2</label><br>
                         <input id="answer2_insert" type="text" placeholder="Vastus 2">
                     </div>
-                    <br>
+
                     <div>
-                        <input type="radio" id="true3" name="checker" value=1>
-                        <label for="true3"></label><br>
-                        <!--                    </div>-->
-                        <!--                    <div>-->
+                        <input type="radio" id="true2" name="boolean" value=1>
+                        <label for="true2"></label><br>
+                    </div>
+
+                    <div>
                         <label>Vastus 3</label><br>
                         <input id="answer3_insert" type="text" placeholder="Vastus 3">
                     </div>
-                    <br>
-                    <div class="radio_1">
-                        <input type="radio" id="true4" name="checker" value=1>
-                        <label for="true4"></label><br>
+
+                    <div>
+                        <input type="radio" id="true3" name="boolean" value=1>
+                        <label for="true3"></label><br>
                     </div>
+
                     <div>
                         <label>Vastus 4</label><br>
-                        <input id="answer4_insert" type="text" placeholder="Vastus 4">
+                        <input id="answer4insert" type="text" placeholder="Vastus 4">
                     </div>
+                    <div>
+                        <input type="radio" id="true4" name="boolean" value=1>
+                        <label for="true4"></label><br>
+                    </div>
+
                     <br>
-                    <!--<button id="enter_question_with_answers" class="button_1" type="button">Enter</button>-->
-                    <button class="button_1" type="button" onclick="displayRadioValue()">Enter</button>
+                    <button id="enter_question_with_answers" class="button_1" type="button">Enter</button>
                 </form>
             </div>
         </aside>
@@ -102,28 +104,13 @@
 
     let postUrl = '/viktor/addQuestionAndAnswers'
 
-    function displayRadioValue() {
-        var ele = document.getElementsByName('checker');
-
-        if (ele[0].checked) {
-            addQuestionAndAnswers1();
-        } else if (ele[1].checked) {
-            addQuestionAndAnswers2();
-        } else if (ele[2].checked) {
-            addQuestionAndAnswers3();
-        } else if (ele[3].checked) {
-            addQuestionAndAnswers4();
-        } else {
-            alert("Vali õige vastus!")
-        }
-    }
 
     function addQuestionAndAnswers1() {
         let questionAndAnswers1 = {
             questionText: document.getElementById("question_insert").value,
 
             answer1: document.getElementById("answer1_insert").value,
-            answer1value: document.getElementById("true1").value,
+            answer1value: document.getElementById("1").value,
 
             answer2: document.getElementById("answer2_insert").value,
 
@@ -211,6 +198,30 @@
                 body: JSON.stringify(questionAndAnswers4)
             })
     }
+
+
+    /* if (document.getElementById.value("true1") == "true") {
+         let element = document.getElementById("enter_question_with_answers");
+         element.addEventListener("click", addQuestionAndAnswers1)
+     } else if (document.getElementById.value("true2") == "true") {
+         let element = document.getElementById("enter_question_with_answers");
+         element.addEventListener("click", addQuestionAndAnswers2)
+     } else if (document.getElementById.value("true3") == "true") {
+         let element = document.getElementById("enter_question_with_answers");
+         element.addEventListener("click", addQuestionAndAnswers3)
+     } else if (document.getElementById.value("true4") == "true") {
+         let element = document.getElementById("enter_question_with_answers");
+         element.addEventListener("click", addQuestionAndAnswers4)
+     } else {
+         alert("Palun vali õige vastus!");
+     }*/
+
+
+    $(document).ready(function () {
+        $('input[type=radio]').click(function () {
+            alert("keegi klikkis!");
+        });
+    });
 
 
 </script>

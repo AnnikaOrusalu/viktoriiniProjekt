@@ -22,16 +22,20 @@ body {
     margin: auto;
     overflow: hidden;
 }
-.container p{
+
+.container p {
     color: white;
 }
-.container h1{
+
+.container h1 {
     color: white;
 }
-.container h3{
+
+.container h3 {
     color: white;
 }
-.container h4{
+
+.container h4 {
     color: white;
 }
 
@@ -39,6 +43,12 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+.radio_1 {
+    /*float: left;*/
+    size: 200px;
+}
+
 
 .button_1 {
     height: 38px;
@@ -127,7 +137,6 @@ header a:hover {
 #showcase p {
     font-size: 20px;
 }
-
 
 
 /* This selects the boxes section */
