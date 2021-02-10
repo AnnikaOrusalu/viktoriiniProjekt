@@ -53,7 +53,8 @@ public class QuizController {
         String answer4value;
         jdbcTemplate.update(sql, paramMap3);
     }
-
+    // 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
+    //
 
 //    @PostMapping("addQuestionAndAnswers")
 //    public void addQuestionAndAnswers(@RequestBody JsonController linker) {

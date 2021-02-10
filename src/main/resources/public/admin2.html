@@ -106,31 +106,41 @@
         var ele = document.getElementsByName('checker');
 
         if (ele[0].checked) {
-            addQuestionAndAnswers1();
+            addQuestionAndAnswers(1);
         } else if (ele[1].checked) {
-            addQuestionAndAnswers2();
+            addQuestionAndAnswers(2);
         } else if (ele[2].checked) {
-            addQuestionAndAnswers3();
+            addQuestionAndAnswers(3);
         } else if (ele[3].checked) {
-            addQuestionAndAnswers4();
+            addQuestionAndAnswers(4);
         } else {
             alert("Vali õige vastus!")
         }
     }
 
-    function addQuestionAndAnswers1() {
-        let questionAndAnswers1 = {
+    function addQuestionAndAnswers(selected) {
+        let questionAndAnswers = {
             questionText: document.getElementById("question_insert").value,
 
             answer1: document.getElementById("answer1_insert").value,
-            answer1value: document.getElementById("true1").value,
-
+            answer1value: false,
             answer2: document.getElementById("answer2_insert").value,
-
+            answer2value: false,
             answer3: document.getElementById("answer3_insert").value,
-
+            answer3value: false,
             answer4: document.getElementById("answer4_insert").value,
+            answer4value: false,
         }
+        if (selected == 1) {
+            questionAndAnswers.answer1value = true
+        } else if (selected == 2) {
+            questionAndAnswers.answer2value = true
+        } else if (selected == 3) {
+            questionAndAnswers.answer3value = true
+        } else if (selected == 4) {
+            questionAndAnswers.answer4value = true
+        }
+
         fetch(postUrl,
             {
                 method: 'POST',
@@ -138,77 +148,6 @@
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify(questionAndAnswers1)
-            })
-    }
-
-
-    function addQuestionAndAnswers2() {
-        let questionAndAnswers2 = {
-            questionText: document.getElementById("question_insert").value,
-
-            answer1: document.getElementById("answer1_insert").value,
-
-            answer2: document.getElementById("answer2_insert").value,
-            answer2value: document.getElementById("true2").value,
-
-            answer3: document.getElementById("answer3_insert").value,
-
-            answer4: document.getElementById("answer4_insert").value,
-        }
-        fetch(postUrl,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(questionAndAnswers2)
-            })
-    }
-
-
-    function addQuestionAndAnswers3() {
-        let questionAndAnswers3 = {
-            questionText: document.getElementById("question_insert").value,
-
-            answer1: document.getElementById("answer1_insert").value,
-
-            answer2: document.getElementById("answer2_insert").value,
-
-            answer3: document.getElementById("answer3_insert").value,
-            answer3value: document.getElementById("true3").value,
-
-            answer4: document.getElementById("answer4_insert").value,
-        }
-        fetch(postUrl,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(questionAndAnswers3)
-            })
-    }
-
-    function addQuestionAndAnswers4() {
-        let questionAndAnswers4 = {
-            questionText: document.getElementById("question_insert").value,
-
-            answer1: document.getElementById("answer1_insert").value,
-
-            answer2: document.getElementById("answer2_insert").value,
-
-            answer3: document.getElementById("answer3_insert").value,
-
-            answer4: document.getElementById("answer4_insert").value,
-            answer4value: document.getElementById("true4").value,
-        }
-        fetch(postUrl,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(questionAndAnswers4)
             })
     }
 
