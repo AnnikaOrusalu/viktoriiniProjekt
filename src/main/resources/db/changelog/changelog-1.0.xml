@@ -25,7 +25,7 @@
             </column>
             <column name="answer_text" type="text"/>
             <column name="true_false" type="boolean"/>
-            <column name="answers_to_questions" type="int">
+            <column name="answers_to_a_question" type="int">
                 <constraints nullable="false"
                              foreignKeyName="fk_questions_id"
                              references="questions(questions_id)"/>
