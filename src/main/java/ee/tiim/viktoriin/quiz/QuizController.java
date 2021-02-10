@@ -1,4 +1,4 @@
-package ee.tiim.viktoriin;
+package ee.tiim.viktoriin.quiz;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-@RequestMapping("viktor")
+@RequestMapping("quiz")
 @RestController
-public class ViktorController {
+public class QuizController {
 
 
     public String makeRandomString() {
@@ -25,14 +25,14 @@ public class ViktorController {
     }
 
 //    @Autowired
-//    private ViktorService viktorService;
+//    private QuizService quizService;
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
 
     @PostMapping("addQuestion")
-    public void addQuestion(@RequestBody JsonThingy linker) {
+    public void addQuestion(@RequestBody JsonController linker) {
         String sql = "INSERT INTO questions (question_text) VALUES (:question_text)";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("question_text", linker.getQuestionText());
