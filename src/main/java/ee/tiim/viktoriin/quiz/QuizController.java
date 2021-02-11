@@ -33,7 +33,7 @@ public class QuizController {
     //localhost:8088/quiz/addQuestion
     @PostMapping("addQuestion")
     public void addQuestion(@RequestBody JsonController linker) {
-    quizService.addQuestion(linker);
+        quizService.addQuestion(linker);
 
     }
 
@@ -54,13 +54,28 @@ public class QuizController {
     // 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
     //
 
-//    @PostMapping("addQuestionAndAnswers")
-//    public void addQuestionAndAnswers(@RequestBody JsonController linker) {
-//        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
-//        String sql2 = "INSERT INTO answers (question_text) VALUES (:question_text)";
-//        Map<String, Object> paramMap2 = new HashMap();
-//        paramMap2.put("question_text", linker.getQuestionText());
-//        jdbcTemplate.update(sql1, paramMap2);
-//    }
+    @PostMapping("addQuestionAndAnswers")
+    public void addQuestionAndAnswers(@RequestBody JsonController linker) {
+        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
+        Map<String, Object> paramMap1 = new HashMap();
+        paramMap1.put("question_text", linker.getQuestionText());
+        jdbcTemplate.update(sql1, paramMap1);
 
+        String sql2 = "INSERT INTO answers (answer_text) VALUES (:answer_text)";
+        Map<String, Object> paramMap2 = new HashMap();
+        paramMap2.put("answer_text", linker.getAnswer1());
+        paramMap2.put("answer_text", linker.getAnswer2());
+        paramMap2.put("answer_text", linker.getAnswer3());
+        paramMap2.put("answer_text", linker.getAnswer4());
+        jdbcTemplate.update(sql2, paramMap2);
+
+        String sql3 = "INSERT INTO answers (true_false) VALUES (:true_false)";
+        Map<String, Object> paramMap3 = new HashMap();
+        paramMap3.put("true_false", linker.getAnswer1value());
+        paramMap3.put("true_false", linker.getAnswer2value());
+        paramMap3.put("true_false", linker.getAnswer3value());
+        paramMap3.put("true_false", linker.getAnswer4value());
+        jdbcTemplate.update(sql3, paramMap3);
+
+    }
 }
