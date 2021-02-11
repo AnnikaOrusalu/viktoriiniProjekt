@@ -19,6 +19,15 @@ public class QuizService {
 
     }
 
+    public void addAnswerAndRadioButton(String answerText, Boolean isTrue, Integer questionId) {
+        quizRepository.addAnswerAndRadioButton(answerText, isTrue, questionId);
+    }
+
+    // see meetod leiab ylesse kysimuse Id selle sama kysimuse texti j2rgi.
+    public Integer getQuestionIdByText(String questionText) {
+        return quizRepository.getQuestionIdByText(questionText);
+    }
+
 //    @Autowired
 //    private NamedParameterJdbcTemplate jdbcTemplate;
 
