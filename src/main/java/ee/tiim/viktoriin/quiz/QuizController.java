@@ -24,19 +24,17 @@ public class QuizController {
         return randomString;
     }
 
-//    @Autowired
-//    private QuizService quizService;
+    @Autowired
+    private QuizService quizService;
 
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-
+    //localhost:8088/quiz/addQuestion
     @PostMapping("addQuestion")
     public void addQuestion(@RequestBody JsonController linker) {
-        String sql = "INSERT INTO questions (question_text) VALUES (:question_text)";
-        Map<String, Object> paramMap = new HashMap();
-        paramMap.put("question_text", linker.getQuestionText());
-        jdbcTemplate.update(sql, paramMap);
+    quizService.addQuestion(linker);
+
     }
 
     @PostMapping("addAnswersAndValues")
