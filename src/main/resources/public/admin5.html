@@ -98,14 +98,17 @@
 
     function startTheAdding() {
 
-        var ele = document.getElementsByName('checker');
-        var i;
-        for (i = 0; i < ele.length; i++) {
+        let ele = document.getElementsByName('checker');
+        let hasCheckedElement = false;
+        for (let i = 0; i < ele.length; i++) {
             if (ele[i].checked) {
-                addQuestionAndAnswers(i + 1);
-            } else {
-                alert("Vali õige vastus!");
+                addQuestionAndAnswers(i)
+                hasCheckedElement = true
+                break;
             }
+        }
+        if (!hasCheckedElement) {
+            alert("Vali õige vastus!")
         }
     }
 
@@ -122,13 +125,13 @@
             answer4: document.getElementById("answer4_insert").value,
             answer4value: false,
         }
-        if (selected == 1) {
+        if (selected == 0) {
             questionAndAnswers.answer1value = true
-        } else if (selected == 2) {
+        } else if (selected == 1) {
             questionAndAnswers.answer2value = true
-        } else if (selected == 3) {
+        } else if (selected == 2) {
             questionAndAnswers.answer3value = true
-        } else if (selected == 4) {
+        } else if (selected == 3) {
             questionAndAnswers.answer4value = true
         }
 
