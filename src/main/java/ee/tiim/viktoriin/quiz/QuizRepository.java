@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,7 @@ public class QuizRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void addQuestion(JsonController linker) {
+    public void addQuestion(AddQuestionsRequest linker) {
         String sql = "INSERT INTO questions (question_text) VALUES (:question_text)";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("question_text", linker.getQuestionText());
@@ -39,4 +38,14 @@ public class QuizRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
+    // Kontrollib, et ei tekiks duplikaate questions tabelisse
+    public Integer isCount(String questionText) {
+        String sql = "SELECT count (*) From questions WHERE question_text = :question_text";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("question_text", questionText);
+        return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
+    }
 }
+
+
+// SELECT count (*) From questions WHERE question_text = :question_text <--- kui count on 0 on okei, count 1 t2hendab et selline text on juba olemas.

@@ -1,6 +1,6 @@
 package ee.tiim.viktoriin.quiz;
 
-public class JsonController {
+public class AddQuestionsRequest {
 
     String questionText;
     String answer1;
