@@ -89,6 +89,8 @@ header li {
     padding: 0 20px 0 20px;
 }
 
+
+
 header #branding {
     float: left;
 }
@@ -136,6 +138,14 @@ header a:hover {
 /*This affects all the paragraphs in the showcase section*/
 #showcase p {
     font-size: 20px;
+}
+
+#play {
+    min-height: 100%;
+    object-fit: fill;
+    text-align: center;
+    color: #ffffff;
+    font-size: 50px;
 }
 
 
@@ -202,6 +212,8 @@ footer {
     header #branding,
     header nav,
     header nav li,
+    /*body nav,*/
+    /*body nav li,*/
     #newsletter h1,
     #newsletter form,
     #boxes .box,
