@@ -38,6 +38,13 @@ public class QuizRepository {
         paramMap.put("question_text", questionText);
         return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
+
+//    public void addQuestionText(JsonController linker) {
+//        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
+//        Map<String, Object> paramMap1 = new HashMap();
+//        paramMap1.put("question_text", linker.getQuestionText());
+//        jdbcTemplate.update(sql1, paramMap1);
+//    }
 //    public Integer isCount(String questionText) {
 //        String sql = "SELECT count (*) From questions WHERE question_text = :question_text";
 //        Map<String, Object> paramMap = new HashMap();

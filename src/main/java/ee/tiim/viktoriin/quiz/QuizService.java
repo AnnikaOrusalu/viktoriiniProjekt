@@ -30,10 +30,11 @@ public class QuizService {
     }
 
     public void addQuestionAndAnswers(JsonController linker) {
-        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
-        Map<String, Object> paramMap1 = new HashMap();
-        paramMap1.put("question_text", linker.getQuestionText());
-        jdbcTemplate.update(sql1, paramMap1);
+        quizRepository.addQuestion(linker);
+//        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
+//        Map<String, Object> paramMap1 = new HashMap();
+//        paramMap1.put("question_text", linker.getQuestionText());
+//        jdbcTemplate.update(sql1, paramMap1);
         // jdbc template tohiks olla ainult repositorys.
         // quizService.addQuestion(JsonController linker) <-- siia viide Service kihist!
         // Kysi just sisestatud kysimuse ID
