@@ -38,5 +38,11 @@ public class QuizRepository {
         paramMap.put("question_text", questionText);
         return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
-
+//    public Integer isCount(String questionText) {
+//        String sql = "SELECT count (*) From questions WHERE question_text = :question_text";
+//        Map<String, Object> paramMap = new HashMap();
+//        paramMap.put("question_text", questionText);
+//        return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
+//    }
 }
+// SELECT count (*) From questions WHERE question_text = :question_text <--- kui count on 0 on okei, count 1 t2hendab et selline text on juba olemas.

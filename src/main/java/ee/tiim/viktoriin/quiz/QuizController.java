@@ -42,19 +42,8 @@ public class QuizController {
 
     @PostMapping("addQuestionAndAnswers")
     public void addQuestionAndAnswers(@RequestBody JsonController linker) {
-        // SIsesta kysimus
-        String sql1 = "INSERT INTO questions (question_text) VALUES (:question_text)";
-        Map<String, Object> paramMap1 = new HashMap();
-        paramMap1.put("question_text", linker.getQuestionText());
-        jdbcTemplate.update(sql1, paramMap1);
-        // quizService.addQuestion(JsonController linker) <-- siia viide Service kihist!
-        // Kysi just sisestatud kysimuse ID
-        int questionId = quizService.getQuestionIdByText(linker.getQuestionText());
-        // Sisesta vastust 4 korda
-        quizService.addAnswerAndRadioButton(linker.getAnswer1(), linker.getAnswer1value(), questionId);
-        quizService.addAnswerAndRadioButton(linker.getAnswer2(), linker.getAnswer2value(), questionId);
-        quizService.addAnswerAndRadioButton(linker.getAnswer3(), linker.getAnswer3value(), questionId);
-        quizService.addAnswerAndRadioButton(linker.getAnswer4(), linker.getAnswer4value(), questionId);
+        quizService.addQuestionAndAnswers(linker);
+
     }
     // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
 }
