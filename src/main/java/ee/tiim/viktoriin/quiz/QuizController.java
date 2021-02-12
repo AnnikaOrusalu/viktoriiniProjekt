@@ -37,22 +37,8 @@ public class QuizController {
 
     }
 
-//    @PostMapping("addAnswersAndValues")
-//    public void addAnswers(@RequestBody JsonController linker) {
-//        String sql = "INSERT INTO answers (answer_text, true_false, answers_to_question) VALUES (:answer_text, :true_false, :answers_to_question)";
-//        Map<String, Object> paramMap3 = new HashMap();
-//        paramMap3.put("answer1", linker.getAnswer1());
-//        paramMap3.put("answer2", linker.getAnswer2());
-//        paramMap3.put("answer3", linker.getAnswer3());
-//        paramMap3.put("answer4", linker.getAnswer4());
-//        String answer1value;
-//        String answer2value;
-//        String answer3value;
-//        String answer4value;
-//        jdbcTemplate.update(sql, paramMap3);
-//    }
     // 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
-    //
+
 
     @PostMapping("addQuestionAndAnswers")
     public void addQuestionAndAnswers(@RequestBody JsonController linker) {
@@ -62,7 +48,7 @@ public class QuizController {
         paramMap1.put("question_text", linker.getQuestionText());
         jdbcTemplate.update(sql1, paramMap1);
         // quizService.addQuestion(JsonController linker) <-- siia viide Service kihist!
-        // Kysi just sisestaud kysimuse ID
+        // Kysi just sisestatud kysimuse ID
         int questionId = quizService.getQuestionIdByText(linker.getQuestionText());
         // Sisesta vastust 4 korda
         quizService.addAnswerAndRadioButton(linker.getAnswer1(), linker.getAnswer1value(), questionId);
@@ -70,5 +56,5 @@ public class QuizController {
         quizService.addAnswerAndRadioButton(linker.getAnswer3(), linker.getAnswer3value(), questionId);
         quizService.addAnswerAndRadioButton(linker.getAnswer4(), linker.getAnswer4value(), questionId);
     }
-        // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
+    // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
 }

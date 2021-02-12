@@ -11,6 +11,7 @@ import java.util.Map;
 
 @Repository
 public class QuizRepository {
+
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -31,7 +32,6 @@ public class QuizRepository {
     }
 
     // Seda meetodit on vaja, et vastus teaks missuguse kysimuse vastus ta on
-
     public Integer getQuestionIdByText(String questionText) {
         String sql = "SELECT questions_id FROM questions WHERE question_text = :question_text";
         Map<String, Object> paramMap = new HashMap();
@@ -39,6 +39,4 @@ public class QuizRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, Integer.class);
     }
 
-//    @Autowired
-//    private NamedParameterJdbcTemplate jdbcTemplate;
 }

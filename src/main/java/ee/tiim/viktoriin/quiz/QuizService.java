@@ -28,10 +28,4 @@ public class QuizService {
         return quizRepository.getQuestionIdByText(questionText);
     }
 
-//    @Autowired
-//    private NamedParameterJdbcTemplate jdbcTemplate;
-
-//    @Autowired
-//    private QuizRepository quizRepository;
-
 }
