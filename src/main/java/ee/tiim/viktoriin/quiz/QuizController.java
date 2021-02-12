@@ -8,42 +8,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 @RequestMapping("quiz")
 @RestController
 public class QuizController {
 
-
-    public String makeRandomString() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(1000);
-        String randomString = "EE" + String.valueOf(randomNumber);
-        return randomString;
-    }
-
     @Autowired
     private QuizService quizService;
 
-    @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
-
     //localhost:8088/quiz/addQuestion
     @PostMapping("addQuestion")
-    public void addQuestion(@RequestBody JsonController linker) {
+    public void addQuestion(@RequestBody AddQuestionsRequest linker) {
         quizService.addQuestion(linker);
 
     }
 
-    // 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
-
 
     @PostMapping("addQuestionAndAnswers")
-    public void addQuestionAndAnswers(@RequestBody JsonController linker) {
-        quizService.addQuestionAndAnswers(linker);
-
+    public void addQuestionAndAnswers(@RequestBody AddQuestionsRequest request) {
+        quizService.addQuestionAndAnswers(request);
     }
     // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
+
+//    public String makeRandomString() {
+//        Random random = new Random();
+//        int randomNumber = random.nextInt(1000);
+//        String randomString = "EE" + String.valueOf(randomNumber);
+//        return randomString;
+//    }
+// 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
+
 }
