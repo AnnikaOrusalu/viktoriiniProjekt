@@ -41,15 +41,27 @@
 
         <aside id="sidebar">
             <div class="dark">
-                <h3>Kui kana seisab kahel jalal kaalub ta 2kg.<br>Kui palju kaalub kana, kui ta seisab ühel jalal.</h3>
+                <h3><input id="kysimus" type="text" disabled></h3>
                 <form class="quote">
                     <div>
                         <label>Vastus 1:</label><br>
-                        <input id="account_withdraw" type="text" placeholder="Account Number">
+                        <input type="radio" id="true1" name="checker" value=1>
+                        <input id="vastus_1" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 2:</label><br>
-                        <input id="amount_withdraw" type="text" placeholder="Amount">
+                        <input type="radio" id="true2" name="checker" value=1>
+                        <input id="vastus_2" type="text" disabled>
+                    </div>
+                    <div>
+                        <label>Vastus 3:</label><br>
+                        <input type="radio" id="true3" name="checker" value=1>
+                        <input id="vastus_3" type="text" disabled>
+                    </div>
+                    <div>
+                        <label>Vastus 4:</label><br>
+                        <input type="radio" id="true4" name="checker" value=1>
+                        <input id="vastus_4" type="text" disabled>
                     </div>
                     <br>
                     <button id="enter_withdraw" class="button_1" type="button">Enter</button>

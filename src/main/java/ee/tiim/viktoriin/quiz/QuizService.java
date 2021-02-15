@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class QuizService {
 
@@ -35,10 +39,24 @@ public class QuizService {
         addAnswerAndRadioButton(request.getAnswer3(), request.getAnswer3value(), questionId);
         addAnswerAndRadioButton(request.getAnswer4(), request.getAnswer4value(), questionId);
     }
+
     // private void
     private void addAnswerAndRadioButton(String answerText, Boolean isTrue, Integer questionId) {
         quizRepository.addAnswerAndRadioButton(answerText, isTrue, questionId);
     }
+    public String getQuestionTextById(Integer questions_id) {
+        return quizRepository.getQuestionTextById(questions_id);
+    }
+
+    public TestAnswer test(Integer questionId) {
+        String question = quizRepository.getQuestionTextById(questionId);
+        List<String> answers = quizRepository.getAnswersByQuestionId(questionId);
+        TestAnswer response = new TestAnswer();
+        response.setQuestionText(question);
+        response.setAnswerTexts(answers);
+        return response;
+    }
+
 
 //    public boolean isCount(String questionText) {
 //        boolean count = quizRepository.isCount(questionText);
