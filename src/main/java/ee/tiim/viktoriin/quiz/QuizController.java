@@ -2,13 +2,7 @@ package ee.tiim.viktoriin.quiz;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Random;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("quiz")
 @RestController
@@ -24,10 +18,20 @@ public class QuizController {
 
     }
 
-
     @PostMapping("addQuestionAndAnswers")
     public void addQuestionAndAnswers(@RequestBody AddQuestionsRequest request) {
         quizService.addQuestionAndAnswers(request);
+    }
+
+    /*
+    @PostMapping("getQuestionText")
+    public void getQuestionTextById(@RequestBody AddQuestionsRequest  questions_id) {
+        quizService.getQuestionTextById(questions_id);
+    }
+     */
+    @GetMapping("test/{id}")
+    public TestAnswer getStuff(@PathVariable("id") Integer questionId) {
+        return quizService.test(questionId);
     }
     // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
 
