@@ -40,30 +40,30 @@
 
         <aside id="sidebar">
             <div class="dark">
-                <h3><input id="kysimus" type="text" disabled></h3>
+                <h3><input id="question" type="text" disabled></h3>
                 <form class="quote">
                     <div>
                         <label>Vastus 1:</label><br>
-                        <input type="radio" id="true1" name="checker" value=1>
-                        <input id="vastus_1" type="text" disabled>
+                        <input type="radio" id="answerButton1" name="checker" value=1>
+                        <input id="answer1" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 2:</label><br>
-                        <input type="radio" id="true2" name="checker" value=1>
-                        <input id="vastus_2" type="text" disabled>
+                        <input type="radio" id="answerButton2" name="checker" value=2>
+                        <input id="answer2" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 3:</label><br>
-                        <input type="radio" id="true3" name="checker" value=1>
-                        <input id="vastus_3" type="text" disabled>
+                        <input type="radio" id="answerButton3" name="checker" value=3>
+                        <input id="answer3" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 4:</label><br>
-                        <input type="radio" id="true4" name="checker" value=1>
-                        <input id="vastus_4" type="text" disabled>
+                        <input type="radio" id="answerButton4" name="checker" value=4>
+                        <input id="answer4" type="text" disabled>
                     </div>
                     <br>
-                    <button id="enter_withdraw" class="button_1" type="button">Enter</button>
+                    <button class="button_1" type="button" onclick="clickTheButton()">Enter</button>
                 </form>
             </div>
         </aside>
@@ -73,30 +73,71 @@
 
 <script>
 
-    let postUrl = '/banker/withdrawMoney'
+    let postUrl = '/quiz/test'
 
-
-    function withdrawMoney() {
-        let withdraw = {
-            account: document.getElementById("account_withdraw").value,
-            amount: document.getElementById("amount_withdraw").value,
-        }
-        fetch(postUrl,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(withdraw)
+    function getQuestionsAndAnswers() {
+        fetch(postUrl)
+            .then(result => result.json())
+            .then(function (result) {
+                // question text
+                let questionElement = document.getElementById("question");
+                questionElement.value = result.questionText;
+                // answer text
+                let answer1Element = document.getElementById("answer1");
+                let answer2Element = document.getElementById("answer2");
+                let answer3Element = document.getElementById("answer3");
+                let answer4Element = document.getElementById("answer4");
+                // buttons
+                let button1Element = document.getElementById("answerButton1");
+                let button2Element = document.getElementById("answerButton2");
+                let button3Element = document.getElementById("answerButton3");
+                let button4Element = document.getElementById("answerButton4");
+                // answersId assigned to a button
+                button1Element.value = result.answerTexts[0].id;
+                button2Element.value = result.answerTexts[1].id;
+                button3Element.value = result.answerTexts[2].id;
+                button4Element.value = result.answerTexts[3].id;
+                // answer text on corresponding fields
+                answer1Element.value = result.answerTexts[0].text;
+                answer2Element.value = result.answerTexts[1].text;
+                answer3Element.value = result.answerTexts[2].text;
+                answer4Element.value = result.answerTexts[3].text;
             })
-        /*.then(result => result.text())
-        .then(function (result) {
-        });*/
+
     }
 
-    let element = document.getElementById("enter_withdraw");
-    element.addEventListener("click", withdrawMoney)
+    getQuestionsAndAnswers()
 
+    function clickTheButton() {
+
+        let ele = document.getElementsByName('checker');
+        let buttonValue = 0;
+        for (let i = 0; i < ele.length; i++) {
+            // KUI element kohal i on valitud
+            if (ele[i].checked) {
+                buttonValue = ele[i].value;
+                // SIIS kontrolli kas valitud on õige küsimuse nupp
+                // ehk kontrolli kas valitud küsimuse true_false väärtus on 1  või 0
+            }
+        }
+        if (buttonValue == 0) {
+            alert("Vali õige vastus!")
+        } else {
+
+            let userAnswer = {
+                userAnswer: buttonValue,
+            }
+            fetch(postUrl,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userAnswer)
+                })
+        }
+
+    }
 
 </script>
 <footer>

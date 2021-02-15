@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TestAnswer {
     private String questionText;
-    private List<String> answerTexts;
+    private List<Question> answerTexts;
 
     public String getQuestionText() {
         return questionText;
@@ -14,11 +14,11 @@ public class TestAnswer {
         this.questionText = questionText;
     }
 
-    public List<String> getAnswerTexts() {
+    public List<Question> getAnswerTexts() {
         return answerTexts;
     }
 
-    public void setAnswerTexts(List<String> answerTexts) {
+    public void setAnswerTexts(List<Question> answerTexts) {
         this.answerTexts = answerTexts;
     }
 }

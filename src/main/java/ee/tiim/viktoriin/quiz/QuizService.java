@@ -44,16 +44,18 @@ public class QuizService {
     private void addAnswerAndRadioButton(String answerText, Boolean isTrue, Integer questionId) {
         quizRepository.addAnswerAndRadioButton(answerText, isTrue, questionId);
     }
+
     public String getQuestionTextById(Integer questions_id) {
         return quizRepository.getQuestionTextById(questions_id);
     }
 
+
     public TestAnswer test(Integer questionId) {
         String question = quizRepository.getQuestionTextById(questionId);
-        List<String> answers = quizRepository.getAnswersByQuestionId(questionId);
+        List<Question> questions = quizRepository.getAnswersByQuestionId(questionId);
         TestAnswer response = new TestAnswer();
         response.setQuestionText(question);
-        response.setAnswerTexts(answers);
+        response.setAnswerTexts(questions);
         return response;
     }
 

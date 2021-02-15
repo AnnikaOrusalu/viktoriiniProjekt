@@ -11,16 +11,17 @@ public class AddQuestionsRequest {
     Boolean answer2value;
     Boolean answer3value;
     Boolean answer4value;
-    Integer question_Id;
+    Integer questionId;
 
-    public Integer getQuestion_Id() {
-        return question_Id;
+
+
+    public Integer getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion_Id(Integer question_Id) {
-        this.question_Id = question_Id;
+    public void setQuestionId(Integer questionId) {
+        this.questionId = questionId;
     }
-
 
 
     public String getQuestionText() {
