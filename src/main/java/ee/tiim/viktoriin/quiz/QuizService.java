@@ -59,7 +59,7 @@ public class QuizService {
 
     public Boolean buttonValue(AnswersValue request) {
 
-        return quizRepository.getAnswersValue(request.getAnswerValue());
+        return quizRepository.getAnswersValue(request.getUserAnswer());
 
     }
 

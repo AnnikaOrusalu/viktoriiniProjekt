@@ -145,7 +145,11 @@
                 .then(function (result) {
                     // answer value
                     let answerElement = document.getElementById("answerWasRightOrWrong");
-                    answerElement.value = result.userAnswer;
+                    if (result) {
+                        answerElement.value = "Tubli!"
+                    } else {
+                        answerElement.value = "Väga paha!"
+                    }
                 })
         }
 

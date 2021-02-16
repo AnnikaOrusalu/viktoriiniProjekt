@@ -3,14 +3,14 @@ package ee.tiim.viktoriin.quiz;
 public class AnswersValue {
     private Integer id;
     private String text;
-    private int answerValue;
+    private int userAnswer;
 
-    public int getAnswerValue() {
-        return answerValue;
+    public int getUserAnswer() {
+        return userAnswer;
     }
 
-    public void setAnswerValue(int answerValue) {
-        this.answerValue = answerValue;
+    public void setUserAnswer(int userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
     public Integer getId() {
