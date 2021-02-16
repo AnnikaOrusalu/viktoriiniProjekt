@@ -32,7 +32,7 @@ public class QuizController {
 //    http://localhost:8080/quiz/test/2
     @GetMapping("test")
     public TestAnswer getStuff() {
-        return quizService.test(12);
+        return quizService.test(1);
     }
     // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
 
