@@ -1,12 +1,9 @@
 package ee.tiim.viktoriin.quiz;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class QuizService {
@@ -52,11 +49,18 @@ public class QuizService {
 
     public TestAnswer test(Integer questionId) {
         String question = quizRepository.getQuestionTextById(questionId);
-        List<Question> questions = quizRepository.getAnswersByQuestionId(questionId);
+        List<AnswersValue> answers = quizRepository.getAnswersByQuestionId(questionId);
         TestAnswer response = new TestAnswer();
         response.setQuestionText(question);
-        response.setAnswerTexts(questions);
+        response.setAnswerTexts(answers);
         return response;
+    }
+
+
+    public Boolean buttonValue(AnswersValue request) {
+
+        return quizRepository.getAnswersValue(request.getAnswerValue());
+
     }
 
 

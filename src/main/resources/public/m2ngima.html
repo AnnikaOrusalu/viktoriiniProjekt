@@ -44,26 +44,30 @@
                 <form class="quote">
                     <div>
                         <label>Vastus 1:</label><br>
-                        <input type="radio" id="answerButton1" name="checker" value=1>
+                        <input type="radio" id="answerButton1" name="checker" value=0>
                         <input id="answer1" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 2:</label><br>
-                        <input type="radio" id="answerButton2" name="checker" value=2>
+                        <input type="radio" id="answerButton2" name="checker" value=1>
                         <input id="answer2" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 3:</label><br>
-                        <input type="radio" id="answerButton3" name="checker" value=3>
+                        <input type="radio" id="answerButton3" name="checker" value=2>
                         <input id="answer3" type="text" disabled>
                     </div>
                     <div>
                         <label>Vastus 4:</label><br>
-                        <input type="radio" id="answerButton4" name="checker" value=4>
+                        <input type="radio" id="answerButton4" name="checker" value=3>
                         <input id="answer4" type="text" disabled>
                     </div>
                     <br>
                     <button class="button_1" type="button" onclick="clickTheButton()">Enter</button>
+                    <div>
+                        <label>Sinu pakkumine oli:</label><br>
+                        <input id="answerWasRightOrWrong" type="text" disabled>
+                    </div>
                 </form>
             </div>
         </aside>
@@ -74,6 +78,7 @@
 <script>
 
     let postUrl = '/quiz/test'
+    let postUrl2 = '/quiz/buttonValue'
 
     function getQuestionsAndAnswers() {
         fetch(postUrl)
@@ -124,16 +129,23 @@
             alert("Vali õige vastus!")
         } else {
 
+
             let userAnswer = {
                 userAnswer: buttonValue,
             }
-            fetch(postUrl,
+            fetch(postUrl2,
                 {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json'
                     },
                     body: JSON.stringify(userAnswer)
+                })
+                .then(result => result.json())
+                .then(function (result) {
+                    // answer value
+                    let answerElement = document.getElementById("answerWasRightOrWrong");
+                    answerElement.value = result.userAnswer;
                 })
         }
 

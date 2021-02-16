@@ -32,7 +32,7 @@ public class QuizController {
 //    http://localhost:8080/quiz/test/2
     @GetMapping("test")
     public TestAnswer getStuff() {
-        return quizService.test(1);
+        return quizService.test(12);
     }
     // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
 
@@ -43,5 +43,10 @@ public class QuizController {
 //        return randomString;
 //    }
 // 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
+
+    @PostMapping("buttonValue")
+    public Boolean buttonValueTheUserSelected(@RequestBody AnswersValue request) {
+        return quizService.buttonValue(request);
+    }
 
 }

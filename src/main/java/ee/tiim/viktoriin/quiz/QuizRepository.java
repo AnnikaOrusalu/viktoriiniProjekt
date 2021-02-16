@@ -55,11 +55,18 @@ public class QuizRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
-    public List<Question> getAnswersByQuestionId(Integer questionId) {
+    public List<AnswersValue> getAnswersByQuestionId(Integer questionId) {
         String sql = "SELECT answer_text, answers_id from answers where answers_to_a_question = :id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", questionId);
         return jdbcTemplate.query(sql, paramMap, new QuestionRowMapper());
+    }
+
+    public Boolean getAnswersValue(Integer answerId) {
+        String sql = "SELECT true_false from answers where answers_id = :id";
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("id", answerId);
+        return jdbcTemplate.queryForObject(sql, paramMap, Boolean.class);
     }
 
 //    public Integer getAnswersTextById(Integer Id) {
