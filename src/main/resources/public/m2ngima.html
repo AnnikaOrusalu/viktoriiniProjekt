@@ -80,24 +80,26 @@
     const postUrl = '/quiz/questionAndAnswers/'
     const questionsUrl = '/quiz/questionIds'
     const postUrl2 = '/quiz/buttonValue'
-    let questionIds = [];
-    let questionIndex = 0;
-    let points = 0;
+    let questionIds = []; //defineerib uue tühja Array
+    let questionIndex = 0; //algab indeksist 0, et hiljem saaks juurde liita ja minna järgmise küsimuse juurde
+    let points = 0; //loeb vastuste punkte
 
+    //2. küsib välja andmebaasist kõik question_id-d
     function getQuestionIds() {
         fetch(questionsUrl)
             .then(result => result.json())
             .then(function (result) {
                 console.log(result)
-                // console.log(questionIds)
+                // 3. paneb question_id-d random järjekorda
                 questionIds = result.sort(() => Math.random() - 0.5);
-                // console.log(questionIds)
+                // 4. käib random järjekorras kõik question_id-d läbi.
+                // käivitab getQuestionsAndAnswers meetodi
                 getQuestionsAndAnswers(questionIds[questionIndex])
             })
         // Kysime kysimuse ID
         // Paneme nad array
     }
-
+    //5.kuvab küsimuse ja vastused etteantud lahtritesse
     function getQuestionsAndAnswers(questionId) {
         fetch(postUrl + questionId)
             .then(result => result.json())
@@ -128,24 +130,25 @@
             })
 
     }
-
+    //6.Enter nuppu vajutades käivitub clickTheButton funktsioon
     function clickTheButton() {
-
+        // kontrollib üle kõik 4 nuppu
         let ele = document.getElementsByName('checker');
         let buttonValue = 0;
         for (let i = 0; i < ele.length; i++) {
-            // KUI element kohal i on valitud
+            // KUI nupp kohal i on valitud
             if (ele[i].checked) {
                 buttonValue = ele[i].value;
                 // SIIS kontrolli kas valitud on õige küsimuse nupp
                 // ehk kontrolli kas valitud küsimuse true_false väärtus on 1  või 0
+                //kui nupp on valitud siis uuendab buttonValue nupu väärtusega
             }
         }
+        //kui buttonValue on 0 siis annab alerti
         if (buttonValue == 0) {
             alert("Vali õige vastus!")
         } else {
-
-
+            //saadab Jsoniga nupu väärtuse serverisse
             let userAnswer = {
                 userAnswer: buttonValue,
             }
@@ -157,25 +160,29 @@
                     },
                     body: JSON.stringify(userAnswer)
                 })
+                //võtab serverist tulemuse vastu
                 .then(result => result.json())
-
+                // paneb tööle funktsiooni
                 .then(function (isCorrectAnswer) {
-
+                    //isCorrectAnswer sisaldab kasutaja valitud küsimuse true_false väärtust
                     console.log(isCorrectAnswer)
+                    //kuvab lahtrisse välja kas vastus on õige või vale
                     let answerElement = document.getElementById("answerWasRightOrWrong");
+                    //kui vastus on õige siis liidab 5 punkti ja kuvad teate koos tulemusega
                     if (isCorrectAnswer) {
                         points = points + 5
                         answerElement.value = "Tubli! Sul on: " + points + " punkti."
-
+                    // kui vastus vale siis lahutab ühe puntki ja kuvab teate koos tulemusega
                     } else {
                         points--
                         answerElement.value = "Väga paha! Sul on: " + points + " punkti."
 
                     }
-                    // Järgmise küsimuse ette küsimise osa.
+                    // Liidab indexile 1, et küsida järgmine küsimuse
                     questionIndex++
-                    // Kontrollib kas on viimane kysimus v mitte ja l6petab mängu ära.
+                    // Kui index on väiksem kui küsimuste arv siis küsi uus küsimus
                     if (questionIndex < questionIds.length) {
+                        //küsib järgmise küsimuse mis on random array-s järjekorra numbriga questionIndex
                         getQuestionsAndAnswers(questionIds[questionIndex])
                     } else {
                         answerElement.value = "Kahjuks rohkem kysimusi ei ole praegu!! Said " + points + " punkti"
@@ -184,6 +191,7 @@
         }
 
     }
+    //1. lehe laadides läheb tööle kõigepealt see meetod
     getQuestionIds()
 
 </script>
