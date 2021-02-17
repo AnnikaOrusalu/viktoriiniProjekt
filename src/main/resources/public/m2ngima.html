@@ -33,7 +33,7 @@
             <ul id="services">
                 <li>
                     <h3>Vali õige vastsus ja kliki jätka!</h3>
-                    <!--                    <p>Mängu lõpus saad teada tulemuse.</p>-->
+                    <p>Mängu lõpus saad teada tulemuse.</p>
                 </li>
             </ul>
         </article>
@@ -63,10 +63,20 @@
                         <input id="answer4" type="text" disabled>
                     </div>
                     <br>
-                    <button class="button_1" type="button" onclick="clickTheButton()">Enter</button>
+                    <button id="enter_button" class="button_1" type="button" onclick="clickTheButton()">Enter</button>
                     <div>
                         <label>Sinu pakkumine oli:</label><br>
                         <input id="answerWasRightOrWrong" type="text" disabled>
+                    </div>
+                    <div id="div1"></div>
+                    <div id="vastus">
+
+                    </div>
+                    <div id="userName">
+
+                    </div>
+                    <div id="enterUsername">
+
                     </div>
                 </form>
             </div>
@@ -80,22 +90,22 @@
     const postUrl = '/quiz/questionAndAnswers/'
     const questionsUrl = '/quiz/questionIds'
     const postUrl2 = '/quiz/buttonValue'
-    let questionIds = [];
-    let questionIndex = 0;
-    let points = 0;
+    const postUrl4 = '/quiz/insertUsername'
+    let questionIds = []
+    let questionIndex = 0
+    let points = 0
+
 
     function getQuestionIds() {
         fetch(questionsUrl)
             .then(result => result.json())
             .then(function (result) {
-                console.log(result)
+                // console.log(result)
                 // console.log(questionIds)
-                questionIds = result.sort(() => Math.random() - 0.5);
+                questionIds = result.sort(() => Math.random() - 0.5)
                 // console.log(questionIds)
                 getQuestionsAndAnswers(questionIds[questionIndex])
             })
-        // Kysime kysimuse ID
-        // Paneme nad array
     }
 
     function getQuestionsAndAnswers(questionId) {
@@ -129,8 +139,56 @@
 
     }
 
-    function clickTheButton() {
+    function clickTheButton2() {
+        let playerName = {
+            playerName: document.getElementById("input"),
+        }
 
+        fetch(postUrl4,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(playerName)
+
+            }
+        )
+    }
+
+
+    function addElement() {
+        let vastusDiv = document.getElementById("vastus")
+        let usernameFieldDiv = document.getElementById("userName")
+        let enterUsernameButtonDiv = document.getElementById("enterUsername")
+        // create a new div element
+        const newDiv = document.createElement("div");
+        const newDivInputField = document.createElement("div");
+        const newDivEnterUserNameButton = document.createElement("div");
+
+        // and give it some content
+        const newContent = document.createTextNode("Sisesta kasutajanimi, et salvestada tulemus: ");
+        const usernameField = document.createElement("input");
+        const enterUserNameButton = document.createElement("button");
+        enterUserNameButton.innerText = 'Vajuta miiiiiiiiiiiiiiiiiiiind'
+        enterUserNameButton.className = 'button_1'
+        enterUserNameButton.type = 'button'
+        // add the text node to the newly created div
+        newDiv.appendChild(newContent);
+        newDivInputField.appendChild(usernameField);
+        newDivEnterUserNameButton.appendChild(enterUserNameButton);
+
+        vastusDiv.appendChild(newDiv);
+        usernameFieldDiv.appendChild(newDivInputField);
+        enterUsernameButtonDiv.appendChild(newDivEnterUserNameButton);
+
+        enterUserNameButton.onclick = clickTheButton2;
+
+    }
+
+    let finished = false;
+
+    function clickTheButton() {
         let ele = document.getElementsByName('checker');
         let buttonValue = 0;
         for (let i = 0; i < ele.length; i++) {
@@ -149,41 +207,51 @@
             let userAnswer = {
                 userAnswer: buttonValue,
             }
-            fetch(postUrl2,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify(userAnswer)
-                })
-                .then(result => result.json())
+            if (questionIndex < questionIds.length) {
+                fetch(postUrl2,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json'
+                        },
+                        body: JSON.stringify(userAnswer)
+                    })
+                    .then(result => result.json())
 
-                .then(function (isCorrectAnswer) {
+                    .then(function (isCorrectAnswer) {
+                        let answerElement = document.getElementById("answerWasRightOrWrong");
+                        // Kontrollib kas on viimane kysimus v mitte ja l6petab mängu ära.
 
-                    console.log(isCorrectAnswer)
+                        // console.log(isCorrectAnswer)
+                        if (isCorrectAnswer) {
+                            points = points + 5
+                            answerElement.value = "Tubli! Sul on: " + points + " punkti."
+
+                        } else {
+                            points--
+                            answerElement.value = "Väga paha! Sul on: " + points + " punkti."
+
+                        }
+                        // Järgmise küsimuse ette küsimise osa.
+                        questionIndex++
+                        if (questionIndex < questionIds.length) {
+                            getQuestionsAndAnswers(questionIds[questionIndex])
+                        }
+
+                    })
+            } else {
+                if (!finished) {
                     let answerElement = document.getElementById("answerWasRightOrWrong");
-                    if (isCorrectAnswer) {
-                        points = points + 5
-                        answerElement.value = "Tubli! Sul on: " + points + " punkti."
-
-                    } else {
-                        points--
-                        answerElement.value = "Väga paha! Sul on: " + points + " punkti."
-
-                    }
-                    // Järgmise küsimuse ette küsimise osa.
-                    questionIndex++
-                    // Kontrollib kas on viimane kysimus v mitte ja l6petab mängu ära.
-                    if (questionIndex < questionIds.length) {
-                        getQuestionsAndAnswers(questionIds[questionIndex])
-                    } else {
-                        answerElement.value = "Kahjuks rohkem kysimusi ei ole praegu!! Said " + points + " punkti"
-                    }
-                })
+                    document.getElementById("enter_button").disabled = true;
+                    finished = true;
+                    answerElement.value = "Kahjuks rohkem kysimusi ei ole praegu!! Said " + points + " punkti"
+                    addElement();
+                }
+            }
         }
 
     }
+
     getQuestionIds()
 
 </script>
