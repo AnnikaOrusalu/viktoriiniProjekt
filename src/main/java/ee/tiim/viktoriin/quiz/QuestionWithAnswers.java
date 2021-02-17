@@ -2,7 +2,7 @@ package ee.tiim.viktoriin.quiz;
 
 import java.util.List;
 
-public class TestAnswer {
+public class QuestionWithAnswers {
     private String questionText;
     private List<AnswersValue> answerTexts;
 

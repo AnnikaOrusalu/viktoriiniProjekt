@@ -47,22 +47,24 @@ public class QuizService {
     }
 
 
-    public TestAnswer test(Integer questionId) {
+    public QuestionWithAnswers getQuestionWithAnswers(Integer questionId) {
         String question = quizRepository.getQuestionTextById(questionId);
         List<AnswersValue> answers = quizRepository.getAnswersByQuestionId(questionId);
-        TestAnswer response = new TestAnswer();
+        QuestionWithAnswers response = new QuestionWithAnswers();
         response.setQuestionText(question);
         response.setAnswerTexts(answers);
         return response;
     }
-
 
     public Boolean buttonValue(AnswersValue request) {
 
         return quizRepository.getAnswersValue(request.getUserAnswer());
 
     }
-
+    public List<Integer> getQuestionIds () {
+        return quizRepository.getQuestionIds();
+    }
+}
 
 //    public boolean isCount(String questionText) {
 //        boolean count = quizRepository.isCount(questionText);
@@ -74,7 +76,7 @@ public class QuizService {
 //        return errorCounter;
 //    }
 
-}
+
 // kysin andmebaasist kas selline asi on olemas v mitte, (counti), kui on selline asi olemas siis viskn exceptioni.
 // SELECT count (*) From questions WHERE question_text = :question_text <--- kui count on 0 on okei, count 1 t2hendab et selline text on juba olemas.
 // jdbc template tohiks olla ainult repositorys.

@@ -4,6 +4,8 @@ package ee.tiim.viktoriin.quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("quiz")
 @RestController
 public class QuizController {
@@ -29,24 +31,28 @@ public class QuizController {
         quizService.getQuestionTextById(questions_id);
     }
      */
-//    http://localhost:8080/quiz/test/2
-    @GetMapping("test")
-    public TestAnswer getStuff() {
-        return quizService.test(12);
-    }
-    // kasutame jsonist tulevat infot selleks et 2ra m22rata kysimuse question_id !
+//    http://localhost:8080/quiz/questionAndAnswers/2
+    @GetMapping("questionAndAnswers/{questionId}")
+    public QuestionWithAnswers getQuestionWithAnswers(@PathVariable("questionId") Integer questionId) {
 
-//    public String makeRandomString() {
-//        Random random = new Random();
-//        int randomNumber = random.nextInt(1000);
-//        String randomString = "EE" + String.valueOf(randomNumber);
-//        return randomString;
-//    }
-// 1 repo teeb yhe sql p2ringu, services 4 repo v2ljakutset.
+        return quizService.getQuestionWithAnswers(questionId);
+    }
+    // Kuidas saada panna küsimused kuvama randomiga ?
+
 
     @PostMapping("buttonValue")
     public Boolean buttonValueTheUserSelected(@RequestBody AnswersValue request) {
         return quizService.buttonValue(request);
     }
 
+    @GetMapping("questionIds")
+    public List<Integer> getQuestionIds() {
+        return quizService.getQuestionIds();
+    }
+//    public String makeRandomString() {
+//        Random random = new Random();
+//        int randomNumber = random.nextInt(1000);
+//        String randomString = "EE" + String.valueOf(randomNumber);
+//        return randomString;
+//    }
 }

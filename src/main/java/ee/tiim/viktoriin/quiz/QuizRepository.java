@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +69,11 @@ public class QuizRepository {
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", answerId);
         return jdbcTemplate.queryForObject(sql, paramMap, Boolean.class);
+    }
+    // meetod, mis kysib välja kõik questions_id´d välja questions tabelist
+    public List<Integer> getQuestionIds () {
+        String sql = "SELECT questions_id from questions";
+        return jdbcTemplate.queryForList(sql, new HashMap<>(), Integer.class);
     }
 
 //    public Integer getAnswersTextById(Integer Id) {

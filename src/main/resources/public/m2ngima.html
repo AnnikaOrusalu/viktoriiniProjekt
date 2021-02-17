@@ -77,11 +77,29 @@
 
 <script>
 
-    let postUrl = '/quiz/test'
-    let postUrl2 = '/quiz/buttonValue'
+    const postUrl = '/quiz/questionAndAnswers/'
+    const questionsUrl = '/quiz/questionIds'
+    const postUrl2 = '/quiz/buttonValue'
+    let questionIds = [];
+    let questionIndex = 0;
+    let points = 0;
 
-    function getQuestionsAndAnswers() {
-        fetch(postUrl)
+    function getQuestionIds() {
+        fetch(questionsUrl)
+            .then(result => result.json())
+            .then(function (result) {
+                console.log(result)
+                // console.log(questionIds)
+                questionIds = result.sort(() => Math.random() - 0.5);
+                // console.log(questionIds)
+                getQuestionsAndAnswers(questionIds[questionIndex])
+            })
+        // Kysime kysimuse ID
+        // Paneme nad array
+    }
+
+    function getQuestionsAndAnswers(questionId) {
+        fetch(postUrl + questionId)
             .then(result => result.json())
             .then(function (result) {
                 // question text
@@ -110,8 +128,6 @@
             })
 
     }
-
-    getQuestionsAndAnswers()
 
     function clickTheButton() {
 
@@ -142,18 +158,33 @@
                     body: JSON.stringify(userAnswer)
                 })
                 .then(result => result.json())
-                .then(function (result) {
-                    // answer value
+
+                .then(function (isCorrectAnswer) {
+
+                    console.log(isCorrectAnswer)
                     let answerElement = document.getElementById("answerWasRightOrWrong");
-                    if (result) {
-                        answerElement.value = "Tubli!"
+                    if (isCorrectAnswer) {
+                        points = points + 5
+                        answerElement.value = "Tubli! Sul on: " + points + " punkti."
+
                     } else {
-                        answerElement.value = "Väga paha!"
+                        points--
+                        answerElement.value = "Väga paha! Sul on: " + points + " punkti."
+
+                    }
+                    // Järgmise küsimuse ette küsimise osa.
+                    questionIndex++
+                    // Kontrollib kas on viimane kysimus v mitte ja l6petab mängu ära.
+                    if (questionIndex < questionIds.length) {
+                        getQuestionsAndAnswers(questionIds[questionIndex])
+                    } else {
+                        answerElement.value = "Kahjuks rohkem kysimusi ei ole praegu!! Said " + points + " punkti"
                     }
                 })
         }
 
     }
+    getQuestionIds()
 
 </script>
 <footer>
