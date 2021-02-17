@@ -63,7 +63,7 @@
                         <input id="answer4" type="text" disabled>
                     </div>
                     <br>
-                    <button id="enter_button" class="button_1" type="button" onclick="clickTheButton()">Enter</button>
+                    <button id="enter_button" class="button_1" type="button" onclick="clickTheEnterButton()">Enter</button>
                     <div>
                         <label>Sinu pakkumine oli:</label><br>
                         <input id="answerWasRightOrWrong" type="text" disabled>
@@ -139,7 +139,7 @@
 
     }
 
-    function clickTheButton2() {
+    function clickTheUserNameButton() {
         let playerName = {
             playerName: document.getElementById("input"),
         }
@@ -182,13 +182,13 @@
         usernameFieldDiv.appendChild(newDivInputField);
         enterUsernameButtonDiv.appendChild(newDivEnterUserNameButton);
 
-        enterUserNameButton.onclick = clickTheButton2;
+        enterUserNameButton.onclick = clickTheUserNameButton;
 
     }
 
     let finished = false;
 
-    function clickTheButton() {
+    function clickTheEnterButton() {
         let ele = document.getElementsByName('checker');
         let buttonValue = 0;
         for (let i = 0; i < ele.length; i++) {
