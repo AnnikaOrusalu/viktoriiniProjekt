@@ -96,6 +96,7 @@
     let points = 0
 
 
+    //2. küsib välja andmebaasist kõik question_id-d
     function getQuestionIds() {
         fetch(questionsUrl)
             .then(result => result.json())
@@ -107,7 +108,7 @@
                 getQuestionsAndAnswers(questionIds[questionIndex])
             })
     }
-
+    //5.kuvab küsimuse ja vastused etteantud lahtritesse
     function getQuestionsAndAnswers(questionId) {
         fetch(postUrl + questionId)
             .then(result => result.json())
@@ -192,18 +193,19 @@
         let ele = document.getElementsByName('checker');
         let buttonValue = 0;
         for (let i = 0; i < ele.length; i++) {
-            // KUI element kohal i on valitud
+            // KUI nupp kohal i on valitud
             if (ele[i].checked) {
                 buttonValue = ele[i].value;
                 // SIIS kontrolli kas valitud on õige küsimuse nupp
                 // ehk kontrolli kas valitud küsimuse true_false väärtus on 1  või 0
+                //kui nupp on valitud siis uuendab buttonValue nupu väärtusega
             }
         }
+        //kui buttonValue on 0 siis annab alerti
         if (buttonValue == 0) {
             alert("Vali õige vastus!")
         } else {
-
-
+            //saadab Jsoniga nupu väärtuse serverisse
             let userAnswer = {
                 userAnswer: buttonValue,
             }
@@ -252,6 +254,7 @@
 
     }
 
+    //1. lehe laadides läheb tööle kõigepealt see meetod
     getQuestionIds()
 
 </script>
