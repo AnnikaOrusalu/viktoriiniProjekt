@@ -13,7 +13,7 @@
 <header>
     <div class="container">
         <div id="branding">
-            <h1><span class="highlight">Online</span> Viktoriin</h1>
+            <a href="index.html"><h1><span class="highlight">Online</span> Viktoriin</h1></a>
         </div>
         <nav>
             <ul>
@@ -28,42 +28,43 @@
 
 <section id="main">
     <div class="container">
-        <article id="main-col">
-            <h1 class="page-title">Alusta mängu!</h1>
-            <ul id="services">
-                <li>
-                    <h3>Vali õige vastsus ja kliki jätka!</h3>
-                    <p>Mängu lõpus saad teada tulemuse.</p>
-                </li>
-            </ul>
-        </article>
-
-        <aside id="sidebar">
+             <aside id="sidebar">
             <div class="dark">
-                <h3><input id="question" type="text" disabled></h3>
+
                 <form class="quote">
+                    <h2>Vali õige vastus ja kliki jätka!</h2>
+                    <h3>Mängu lõpus saad teada punktisumma.</h3>
+
                     <div>
-                        <label>Vastus 1:</label><br>
+                        <input id="question" type="text" disabled>
+
+                    </div>
+                    <div>
+                        <label>Küsimus:</label><br>
                         <input type="radio" id="answerButton1" name="checker" value=0>
                         <input id="answer1" type="text" disabled>
                     </div>
                     <div>
-                        <label>Vastus 2:</label><br>
+                        <label>Vastus 1:</label><br>
                         <input type="radio" id="answerButton2" name="checker" value=1>
                         <input id="answer2" type="text" disabled>
                     </div>
                     <div>
-                        <label>Vastus 3:</label><br>
+                        <label>Vastus 2:</label><br>
                         <input type="radio" id="answerButton3" name="checker" value=2>
                         <input id="answer3" type="text" disabled>
                     </div>
                     <div>
-                        <label>Vastus 4:</label><br>
+                        <label>Vastus 3:</label><br>
                         <input type="radio" id="answerButton4" name="checker" value=3>
                         <input id="answer4" type="text" disabled>
                     </div>
+                    <div><label>Vastus 4:</label></div>
                     <br>
-                    <button id="enter_button" class="button_1" type="button" onclick="clickTheEnterButton()">Enter</button>
+                    <button id="enter_button" class="button_1" type="button" onclick="clickTheEnterButton()">Vasta
+                    </button>
+                    <br>
+                    <br>
                     <div>
                         <label>Sinu pakkumine oli:</label><br>
                         <input id="answerWasRightOrWrong" type="text" disabled>
@@ -75,6 +76,7 @@
                     <div id="userName">
 
                     </div>
+                    <br>
                     <div id="enterUsername">
 
                     </div>
@@ -108,6 +110,7 @@
                 getQuestionsAndAnswers(questionIds[questionIndex])
             })
     }
+
     //5.kuvab küsimuse ja vastused etteantud lahtritesse
     function getQuestionsAndAnswers(questionId) {
         fetch(postUrl + questionId)
@@ -171,7 +174,7 @@
         const newContent = document.createTextNode("Sisesta kasutajanimi, et salvestada tulemus: ");
         const usernameField = document.createElement("input");
         const enterUserNameButton = document.createElement("button");
-        enterUserNameButton.innerText = 'Vajuta miiiiiiiiiiiiiiiiiiiind'
+        enterUserNameButton.innerText = 'Sisesta kasutajanimi'
         enterUserNameButton.className = 'button_1'
         enterUserNameButton.type = 'button'
         // add the text node to the newly created div

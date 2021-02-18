@@ -57,14 +57,28 @@ ul {
     padding-left: 20px;
     padding-right: 20px;
     color: #ffffff;
+    border-radius: 8px;
+}
+
+.button_2 {
+    height: 100px;
+    background: #8d1382;
+    border: 0;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: #ffffff;
+    border-radius: 20px;
 }
 
 .dark {
-    padding: 30px;
+    padding: 50px;
+    /*background: #ff071e;*/
     background: #35424a;
     color: #ffffff;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
+
 }
 
 /* Header **/
@@ -88,7 +102,6 @@ header li {
     display: inline;
     padding: 0 20px 0 20px;
 }
-
 
 
 header #branding {
@@ -144,20 +157,35 @@ header a:hover {
     min-height: 100%;
     object-fit: fill;
     text-align: center;
-    color: #ffffff;
-    font-size: 50px;
+    /*color: #ffffff;*/
+    /*font-size: 100px;*/
 }
 
+#play h1 {
+    color: #ffffff;
+    font-size: 30px;
+}
 
 /* This selects the boxes section */
 #boxes {
-    margin-top: 180px;
+    margin-top: 20px;
+}
+
+#boxes1 {
+    margin-top: 80px;
 }
 
 /*This selects the div class box from the section called boxes.
 Since they are all the same class multiple box div can be edited
 with the same code.*/
 #boxes .box {
+    float: left;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+}
+
+#boxes1 .box {
     float: left;
     text-align: center;
     width: 30%;
@@ -171,16 +199,26 @@ with the same code.*/
 
 }
 
+#boxes1 .box img {
+    width: 90px;
+
+}
+
 /* Sidebar */
 aside#sidebar {
-    float: right;
+    float: none;
     width: 50%;
     margin-top: 10px;
+    border-radius: 10px;
 }
 
 aside#sidebar .quote input, aside#sidebar .quote textarea {
-    width: 90%;
+    width: 95%;
     padding: 5px;
+    border-radius: 10px;
+    color: white;
+    background: #5c7381;
+
 }
 
 /* Main-col */
@@ -212,11 +250,12 @@ footer {
     header #branding,
     header nav,
     header nav li,
-    /*body nav,*/
-    /*body nav li,*/
+        /*body nav,*/
+        /*body nav li,*/
     #newsletter h1,
     #newsletter form,
     #boxes .box,
+    #boxes1 .box,
     article#main-col,
     aside#sidebar {
         float: none;
