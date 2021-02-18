@@ -28,9 +28,8 @@
 
 <section id="main">
     <div class="container">
-             <aside id="sidebar">
+        <aside id="sidebar">
             <div class="dark">
-
                 <form class="quote">
                     <h2>Vali õige vastus ja kliki jätka!</h2>
                     <h3>Mängu lõpus saad teada punktisumma.</h3>
@@ -69,17 +68,16 @@
                         <label>Sinu pakkumine oli:</label><br>
                         <input id="answerWasRightOrWrong" type="text" disabled>
                     </div>
+
                     <div id="div1"></div>
-                    <div id="vastus">
-
-                    </div>
-                    <div id="userName">
-
-                    </div>
                     <br>
-                    <div id="enterUsername">
 
-                    </div>
+                    <div id="vastus"></div>
+
+                    <div id="userName"></div>
+                    <br>
+
+                    <div id="enterUsername"></div>
                 </form>
             </div>
         </aside>
@@ -145,7 +143,7 @@
 
     function clickTheUserNameButton() {
         let playerName = {
-            playerName: document.getElementById("input"),
+            playerName: document.getElementById("userName").value,
         }
 
         fetch(postUrl4,
