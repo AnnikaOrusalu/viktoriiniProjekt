@@ -88,9 +88,9 @@
 <script>
 
     const postUrl = '/quiz/questionAndAnswers/'
-    const questionsUrl = '/quiz/questionIds'
-    const postUrl2 = '/quiz/buttonValue'
-    const postUrl4 = '/quiz/insertUsername'
+    const postUrlQuestionIds = '/quiz/questionIds'
+    const postUrlButtonValue = '/quiz/buttonValue'
+    const postUrlUserNameAndPoints = '/quiz/insertUserNameAndPoints'
     let questionIds = []
     let questionIndex = 0
     let points = 0
@@ -98,7 +98,7 @@
 
     //2. küsib välja andmebaasist kõik question_id-d
     function getQuestionIds() {
-        fetch(questionsUrl)
+        fetch(postUrlQuestionIds)
             .then(result => result.json())
             .then(function (result) {
                 // console.log(result)
@@ -147,7 +147,7 @@
             playerPoints: points,
         }
 
-        fetch(postUrl4,
+        fetch(postUrlUserNameAndPoints,
             {
                 method: 'POST',
                 headers: {
@@ -157,6 +157,9 @@
 
             }
         )
+        alert("Nimi ja tulemused lisatud!")
+        location.reload()
+
     }
 
 
@@ -213,7 +216,7 @@
                 userAnswer: buttonValue,
             }
             if (questionIndex < questionIds.length) {
-                fetch(postUrl2,
+                fetch(postUrlButtonValue,
                     {
                         method: 'POST',
                         headers: {

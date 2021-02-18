@@ -26,11 +26,11 @@ public class QuizRepository {
 
     public void addAnswerAndRadioButton(String answerText, Boolean isTrue, Integer questionId) {
         String sql = "INSERT INTO answers (answer_text, true_false, answers_to_a_question) VALUES (:answer_text, :true_false, :answers_to_a_question)";
-        Map<String, Object> paramMap4 = new HashMap();
-        paramMap4.put("answer_text", answerText);
-        paramMap4.put("true_false", isTrue);
-        paramMap4.put("answers_to_a_question", questionId);
-        jdbcTemplate.update(sql, paramMap4);
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("answer_text", answerText);
+        paramMap.put("true_false", isTrue);
+        paramMap.put("answers_to_a_question", questionId);
+        jdbcTemplate.update(sql, paramMap);
     }
 
     // Seda meetodit on vaja, et vastus teaks missuguse kysimuse vastus ta on
@@ -70,19 +70,20 @@ public class QuizRepository {
         paramMap.put("id", answerId);
         return jdbcTemplate.queryForObject(sql, paramMap, Boolean.class);
     }
+
     // meetod, mis kysib välja kõik questions_id´d välja questions tabelist
-    public List<Integer> getQuestionIds () {
+    public List<Integer> getQuestionIds() {
         String sql = "SELECT questions_id from questions";
         return jdbcTemplate.queryForList(sql, new HashMap<>(), Integer.class);
     }
 
-//    public Integer getAnswersTextById(Integer Id) {
-//        String sql56 = "SELECT question_text FROM questions WHERE questions_id = :questions_id";
-//        Map<String, Object> paramMap = new HashMap<>();
-//        paramMap.put("Id", Id);
-//        return jdbcTemplate.queryForObject(sql56, paramMap, Integer.class);
-//    }
+    public void insertUserNameAndPoints(ResultsRequest request) {
+        String sql = "INSERT INTO results (player_name, player_points) VALUES (:player_name, :player_points)";
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("player_name", request.getPlayerName());
+        paramMap.put("player_points", request.getPlayerPoints());
+        jdbcTemplate.update(sql, paramMap);
+    }
 }
 
 
-// SELECT count (*) From questions WHERE question_text = :question_text <--- kui count on 0 on okei, count 1 t2hendab et selline text on juba olemas.

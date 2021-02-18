@@ -39,13 +39,8 @@
             <column name="results_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="player_id" type="int"/>
-            <column name="answers_id" type="int"></column>
-            <column name="results_to_questions" type="int">
-                <constraints nullable="false"
-                             foreignKeyName="fk_questions_id"
-                             references="questions(questions_id)"/>
-            </column>
+            <column name="player_name" type="text"/>
+            <column name="player_points" type="int"></column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
