@@ -1,17 +1,9 @@
 package ee.tiim.viktoriin.quiz;
 
-public class AnswersValue {
+public class Question {
     private Integer id;
     private String text;
     private int userAnswer;
-
-    public int getUserAnswer() {
-        return userAnswer;
-    }
-
-    public void setUserAnswer(int userAnswer) {
-        this.userAnswer = userAnswer;
-    }
 
     public Integer getId() {
         return id;
@@ -29,5 +21,11 @@ public class AnswersValue {
         this.text = text;
     }
 
+    public int getUserAnswer() {
+        return userAnswer;
+    }
 
+    public void setUserAnswer(int userAnswer) {
+        this.userAnswer = userAnswer;
+    }
 }

@@ -46,14 +46,14 @@ public class QuizService {
 
     public QuestionWithAnswers getQuestionWithAnswers(Integer questionId) {
         String question = quizRepository.getQuestionTextById(questionId);
-        List<AnswersValue> answers = quizRepository.getAnswersByQuestionId(questionId);
+        List<Question> answers = quizRepository.getAnswersByQuestionId(questionId);
         QuestionWithAnswers response = new QuestionWithAnswers();
         response.setQuestionText(question);
         response.setAnswerTexts(answers);
         return response;
     }
 
-    public Boolean buttonValue(AnswersValue request) {
+    public Boolean buttonValue(Question request) {
         return quizRepository.getAnswersValue(request.getUserAnswer());
     }
 
@@ -64,5 +64,10 @@ public class QuizService {
     public void insertUserNameAndPoints(ResultsRequest request) {
         quizRepository.insertUserNameAndPoints(request);
 
+    }
+
+    public List<HighScore> getUserHighScore() {
+
+        return quizRepository.getUserHighScore();
     }
 }

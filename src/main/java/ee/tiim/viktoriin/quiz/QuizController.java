@@ -30,7 +30,7 @@ public class QuizController {
     }
 
     @PostMapping("buttonValue")
-    public Boolean buttonValueTheUserSelected(@RequestBody AnswersValue request) {
+    public Boolean buttonValueTheUserSelected(@RequestBody Question request) {
         return quizService.buttonValue(request);
     }
 
@@ -42,5 +42,10 @@ public class QuizController {
     @PostMapping("insertUserNameAndPoints")
     public void insertUserNameAndPoints(@RequestBody ResultsRequest request) {
         quizService.insertUserNameAndPoints(request);
+    }
+
+    @GetMapping("getUserHighScore")
+    public List<HighScore> getUserHighScore() {
+        return quizService.getUserHighScore();
     }
 }

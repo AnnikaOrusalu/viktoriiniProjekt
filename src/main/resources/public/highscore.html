@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Online Quiz">
+    <meta name="keywords" content="quiz">
+    <meta name="author" content="Annika, Erik, Lauri">
+    <title>Online Viktoriin | Loo kasutaja</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight">Online</span> Viktoriin</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">esileht</a></li>
+                <li class="current"><a href="highscore.html">loo kasutaja</a></li>
+                <li><a href="m2ngima.html">mängima</a></li>
+                <li><a href="admin.html">admin</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+<section id="main">
+    <div class="container">
+        <!--        <article id="main-col">-->
+        <!--            <h1 class="page-title">Edetabel</h1>-->
+        <!--            <ul id="services">-->
+        <!--                <li>-->
+        <!--                    <h3>Siin kuvatakse välja tulemuste edetabel.</h3>-->
+        <!--                    <p>Nimi ja punktid.</p>-->
+        <!--                </li>-->
+        <!--            </ul>-->
+        <!--        </article>-->
+
+        <aside id="sidebar">
+            <div class="dark">
+                <form class="quote">
+                    <div>
+
+                        <h1>Edetabel</h1>
+                        <h3>Siin kuvatakse välja tulemuste edetabel.</h3>
+                        <table id="scoretable">
+                            <!--                            <tr>-->
+                            <!--                                <td> object name</td>-->
+                            <!--                                <td> object score</td>-->
+                            <!--                            </tr>-->
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+
+<script>
+
+    let getHighScoreURL = '/quiz/getUserHighScore'
+
+    function getUserHighScore() {
+        fetch(getHighScoreURL)
+            .then(result => result.json())
+            .then(function (result) {
+
+
+                for (let i = 0; i < result.length; i++) {
+                    // console.log(result[i])
+                    let scoreTable = document.getElementById("scoretable")
+
+                    // creating tr's
+                    const newTr = document.createElement("tr");
+
+                    // creating td's
+                    // user name
+
+                    const newTdPlayerNameField = document.createElement("td");
+
+                    // user points
+                    const newTdPlayerPointsField = document.createElement("td");
+
+
+                    // vasakule tabel paremale rida
+
+                    scoreTable.appendChild(newTr)
+
+                    newTr.appendChild(newTdPlayerNameField)
+                    newTdPlayerNameField.innerText = result[i].playerName
+
+                    newTr.appendChild(newTdPlayerPointsField)
+                    newTdPlayerPointsField.innerText = result[i].playerPoints
+
+                }
+
+            })
+
+    }
+
+    getUserHighScore()
+
+
+</script>
+<footer>
+    Vali-IT Quiz Team &copy; 2021
+</footer>
+</body>
+</html>

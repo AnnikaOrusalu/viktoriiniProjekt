@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Array;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +55,7 @@ public class QuizRepository {
         return jdbcTemplate.queryForObject(sql, paramMap, String.class);
     }
 
-    public List<AnswersValue> getAnswersByQuestionId(Integer questionId) {
+    public List<Question> getAnswersByQuestionId(Integer questionId) {
         String sql = "SELECT answer_text, answers_id from answers where answers_to_a_question = :id";
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("id", questionId);
@@ -83,6 +81,13 @@ public class QuizRepository {
         paramMap.put("player_name", request.getPlayerName());
         paramMap.put("player_points", request.getPlayerPoints());
         jdbcTemplate.update(sql, paramMap);
+    }
+
+
+    // select * from tabel order by punktisumma limit by 10
+    public List<HighScore> getUserHighScore() {
+        String sql = "SELECT player_name, player_points FROM results order by player_points DESC limit 10";
+        return jdbcTemplate.query(sql, new HashMap<>(), new HighScoreRowMapper());
     }
 }
 
